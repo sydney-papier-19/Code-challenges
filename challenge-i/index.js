@@ -8,17 +8,23 @@ const minuteOfDay = '00';
 
 // Only change below this line
 
+
+let balance = 0;
+
 if  (Number(hourOfDay) === 0 && Number(minuteOfDay) === 0) {
-	const taxAsDecimal = tax ;
+    //Convert '8%' to a decimal value
+	const taxAsDecimal = parseFloat(tax) / 100;
     
-    const startingAfterTax = salary - taxAsDecimal;
-    console.log(startingAfterTax)
+    //Calculate the salary after tax
+    const startingAfterTax = salary -(salary * taxAsDecimal);
     
-	const balance = startingAfterTax - transport - food - rent;
-    console.log(balance)
+    
+    //calculate the salary after tax
+	 balance = startingAfterTax - transport - food - rent;
+   
 } 
 
 
-	
+//calculate the balance
 console.log('Your balance is: R' + balance.toFixed(2));
 
