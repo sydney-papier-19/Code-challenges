@@ -11,10 +11,19 @@ const divider = '----------------------------------'
 
 // Only change below this line
 
-const owed = parseInt('R' + leoBalance + sarahBalance)
-const leo = "{leoName} + {leoSurname} + \"Owed\" + \"R\" + {sarahBalance}"
-const sarah = "{leoName} + {surname} + \"Owed\" + \"R\" + {sarahBalance}"
-const total = "Total amount owed: "
-const result = leo + sarah + divider + divider + total + owed + divider
+// Calculate the total owed by parsing the balances into numbers
+const owed = Math.abs(parseFloat(leoBalance) + parseFloat(sarahBalance))
+              .toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+              .replace(/,/g, ' '); // Replace commas with spaces
 
-console.log(result)
+// Create strings for Leo and Sarah's details, trimming unnecessary whitespace
+const leo = `${leoName.trim()} ${leoSurname.trim()} Owed: R${Math.abs(parseFloat(leoBalance)).toLocaleString().replace(/,/g, ' ')}`;
+const sarah = `${sarahName.trim()} ${sarahSurname.trim()} Owed: R${Math.abs(parseFloat(sarahBalance)).toLocaleString().replace(/,/g, ' ')}`;
+
+
+// Create the result string with the total owed
+const total = `Total amount owed: R${owed}`;
+const result = `${leo}\n${sarah}\n${divider}\n${total}\n${divider}`;
+
+
+console.log(result);
